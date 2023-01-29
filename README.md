@@ -9,5 +9,5 @@ app_file: app.py
 pinned: true
 license: mit
 ---
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+With all utmost respect forked from https://huggingface.co/spaces/anzorq/finetuned_diffusion
+All credits goes to their respective owners.

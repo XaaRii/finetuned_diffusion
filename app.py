@@ -61,7 +61,7 @@ if is_colab:
       current_model.path,
       torch_dtype=torch.float16,
       scheduler=DPMSolverMultistepScheduler.from_pretrained(current_model.path, subfolder="scheduler"),
-      safety_checker=lambda images, clip_input: (images, False)
+      safety_checker= None
       )
 
 else:
@@ -150,7 +150,7 @@ def txt_to_img(model_path, prompt, n_images, neg_prompt, guidance, steps, width,
               current_model_path,
               torch_dtype=torch.float16,
               scheduler=DPMSolverMultistepScheduler.from_pretrained(current_model.path, subfolder="scheduler"),
-              safety_checker=lambda images, clip_input: (images, False)
+              safety_checker= None
               )
         else:
           pipe = StableDiffusionPipeline.from_pretrained(
@@ -199,7 +199,7 @@ def img_to_img(model_path, prompt, n_images, neg_prompt, img, strength, guidance
               current_model_path,
               torch_dtype=torch.float16,
               scheduler=DPMSolverMultistepScheduler.from_pretrained(current_model.path, subfolder="scheduler"),
-              safety_checker=lambda images, clip_input: (images, False)
+              safety_checker= None
               )
         else:
           pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
