@@ -26,6 +26,7 @@ models = [
      Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
      Model("Dreamlike Diffusion 1.0", "dreamlike-art/dreamlike-diffusion-1.0", "dreamlikeart "),
      Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
+     Model("Stable Diffusion 2.1", "stabilityai/stable-diffusion-2-1", ""),
      Model("Anything V3", "Linaqruf/anything-v3.0", ""),
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
      Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
