@@ -23,19 +23,21 @@ class Model:
         self.pipe_i2i = None
 
 models = [
+     Model("Midjourney v4 style", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
+     Model("Anything v3", "Linaqruf/anything-v3.0", ""),
      Model("Arcane", "nitrosocke/Arcane-Diffusion", "arcane style "),
      Model("Dreamlike Diffusion 1.0", "dreamlike-art/dreamlike-diffusion-1.0", "dreamlikeart "),
      Model("Archer", "nitrosocke/archer-diffusion", "archer style "),
      Model("Stable Diffusion 2.1", "stabilityai/stable-diffusion-2-1", ""),
-     Model("Anything V3", "Linaqruf/anything-v3.0", ""),
      Model("Modern Disney", "nitrosocke/mo-di-diffusion", "modern disney style "),
      Model("Classic Disney", "nitrosocke/classic-anim-diffusion", "classic disney style "),
      Model("Loving Vincent (Van Gogh)", "dallinmackay/Van-Gogh-diffusion", "lvngvncnt "),
      Model("Wavyfusion", "wavymulder/wavyfusion", "wa-vy style "),
      Model("Analog Diffusion", "wavymulder/Analog-Diffusion", "analog style "),
      Model("Redshift renderer (Cinema4D)", "nitrosocke/redshift-diffusion", "redshift style "),
-     Model("Midjourney v4 style", "prompthero/midjourney-v4-diffusion", "mdjrny-v4 style "),
      Model("Waifu", "hakurei/waifu-diffusion"),
+     Model("Pastel-mix", "andite/pastel-mix"),
+     Model("Anything v4", "andite/anything-v4.0"),
      Model("Cyberpunk Anime", "DGSpitzer/Cyberpunk-Anime-Diffusion", "dgs illustration style "),
      Model("Elden Ring", "nitrosocke/elden-ring-diffusion", "elden ring style "),
      Model("TrinArt v2", "naclbit/trinart_stable_diffusion_v2"),
@@ -253,17 +255,21 @@ with gr.Blocks(css="style.css") as demo:
         f"""
             <div class="finetuned-diffusion-div">
               <div>
-                <h1>Finetuned Diffusion</h1>
+                <h1>Pawele Multi-Diffusion</h1>
               </div>
               <p>
-               Demo for multiple fine-tuned Stable Diffusion models, trained on different styles: <br>
-               <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane</a>, <a href="https://huggingface.co/nitrosocke/archer-diffusion">Archer</a>, <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring</a>, <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Loving Vincent (Van Gogh)</a>, <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer (Cinema4D)</a>, <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 style</a>, <a href="https://huggingface.co/hakurei/waifu-diffusion">Waifu</a>, <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>, <a href="https://huggingface.co/AstraliteHeart/pony-diffusion">Pony Diffusion</a>, <a href="https://huggingface.co/nousr/robo-diffusion">Robo Diffusion</a>, <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>, <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a> + in colab notebook you can load any other Diffusers 🧨 SD model hosted on HuggingFace 🤗.
+               Demo for multiple fine-tuned Stable Diffusion models, trained on different styles, some better, some worse.
+               You can also load custom models hosted on https://huggingface.co/
+               {("</br>You can play around as much as you want, although keep in mind this is hosted on free resources on google colab and those may vary greatly in the future." if is_colab else "")}
               </p>
-              <p>You can skip the queue and load custom models in the colab: <a href="https://colab.research.google.com/gist/qunash/42112fb104509c24fd3aa6d1c11dd6e0/copy-of-fine-tuned-diffusion-gradio.ipynb"><img data-canonical-src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" src="https://camo.githubusercontent.com/84f0493939e0c4de4e6dbe113251b4bfb5353e57134ffd9fcab6b8714514d4d1/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667"></a></p>
-               Running on <b>{device}</b>{(" in a <b>Google Colab</b>." if is_colab else "")}
+              <p>Don't know what to type in as prompts? You can get inspired on various sites (<a href="https://prompthero.com/openjourney-prompts">prompthero</a>, <a href="https://lexica.art/">Lexica.art</a>) or you can try tools for prompt generating (such as <a href="https://huggingface.co/spaces/Gustavosta/MagicPrompt-Stable-Diffusion">MagicPrompt</a>)</br>Also, by writing prompt in brackets "()", they will be more important (this also works for negative prompts!)</p>
+              <p>With negative prompts, you can further impact the quality of images. You can check out some examples at the bottom.</p>
+              <p>
+               Another ᴘʀᴏ tip: check out the home pages of available models. By doing this, you can quickly check out what to expect from each model, what is it good for and most importantly how to use it properly.</br>
+               Some models needs prefixes to work -> these are used automatically by default. Please don't use them again on your own, it could lead to unexpected results.
+               Homepages of available models: <a href="https://huggingface.co/prompthero/midjourney-v4-diffusion">Midjourney v4 style</a>, <a href="https://huggingface.co/Linaqruf/anything-v3.0">Anything v3</a>, <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane</a>, <a href="https://huggingface.co/dreamlike-art/dreamlike-diffusion-1.0">Dreamlike Diffusion 1.0</a>, <a href="https://huggingface.co/nitrosocke/archer-diffusion">Archer</a>, <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion 2.1</a>, <a href="https://huggingface.co/nitrosocke/mo-di-diffusion">Modern Disney</a>, <a href="https://huggingface.co/nitrosocke/classic-anim-diffusion">Classic Disney</a>, <a href="https://huggingface.co/dallinmackay/Van-Gogh-diffusion">Van Gogh</a>, <a href="https://huggingface.co/wavymulder/wavyfusion">Wavyfusion</a>, <a href="https://huggingface.co/wavymulder/Analog-Diffusion">Analog Diffusion</a>, <a href="https://huggingface.co/nitrosocke/redshift-diffusion">Redshift renderer</a>, <a href="https://huggingface.co/hakurei/waifu-diffusion">Waifu</a>, <a href="https://huggingface.co/andite/pastel-mix">Pastel-mix (another anime-like)</a>, <a href="https://huggingface.co/andite/anything-v4.0">Anything v4</a>, <a href="https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion">Cyberpunk Anime</a>, <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion">Elden Ring</a>, <a href="https://huggingface.co/naclbit/trinart_stable_diffusion_v2">TrinArt v2</a>, <a href="https://huggingface.co/nitrosocke/spider-verse-diffusion">Spider-Verse</a>, <a href="https://huggingface.co/Fictiverse/Stable_Diffusion_BalloonArt_Model">Balloon Art</a>, <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">Tron Legacy</a>, <a href="https://huggingface.co/lambdalabs/sd-pokemon-diffusers">Pokémon</a>, <a href="https://huggingface.co/AstraliteHeart/pony-diffusion">Pony Diffusion</a>, <a href="https://huggingface.co/nousr/robo-diffusion">Robo Diffusion</a>, <a href="https://huggingface.co/johnslegers/epic-diffusion">Epic Diffusion</a>
               </p>
-              <p>You can also duplicate this space and upgrade to gpu by going to settings:<br>
-              <a style="display:inline-block" href="https://huggingface.co/spaces/anzorq/finetuned_diffusion?duplicate=true"><img src="https://img.shields.io/badge/-Duplicate%20Space-blue?labelColor=white&style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAP5JREFUOE+lk7FqAkEURY+ltunEgFXS2sZGIbXfEPdLlnxJyDdYB62sbbUKpLbVNhyYFzbrrA74YJlh9r079973psed0cvUD4A+4HoCjsA85X0Dfn/RBLBgBDxnQPfAEJgBY+A9gALA4tcbamSzS4xq4FOQAJgCDwV2CPKV8tZAJcAjMMkUe1vX+U+SMhfAJEHasQIWmXNN3abzDwHUrgcRGmYcgKe0bxrblHEB4E/pndMazNpSZGcsZdBlYJcEL9Afo75molJyM2FxmPgmgPqlWNLGfwZGG6UiyEvLzHYDmoPkDDiNm9JR9uboiONcBXrpY1qmgs21x1QwyZcpvxt9NS09PlsPAAAAAElFTkSuQmCC&logoWidth=14" alt="Duplicate Space"></a></p>
+               Running on <b>{device}</b>{(" in a <b>Google Colab</b>. (This means you have to check out the colab page every once in a while due to random \"are you still there?\" checks)" if is_colab else "")}
             </div>
         """
     )
@@ -321,15 +327,20 @@ with gr.Blocks(css="style.css") as demo:
     generate.click(inference, inputs=inputs, outputs=outputs)
 
     ex = gr.Examples([
-        [models[7].name, "tiny cute and adorable kitten adventurer dressed in a warm overcoat with survival gear on a winters day", 7.5, 25],
-        [models[4].name, "portrait of dwayne johnson", 7.0, 35],
-        [models[5].name, "portrait of a beautiful alyx vance half life", 10, 25],
-        [models[6].name, "Aloy from Horizon: Zero Dawn, half body portrait, smooth, detailed armor, beautiful face, illustration", 7.0, 30],
-        [models[5].name, "fantasy portrait painting, digital art", 4.0, 20],
+        [models[9].name, "tiny cute and adorable kitten adventurer dressed in a warm overcoat with survival gear on a winters day", 7.5, 25],
+        [models[2].name, "portrait of dwayne johnson", 7.0, 35],
+        [models[7].name, "portrait of a beautiful alyx vance half life", 10, 25],
+        [models[8].name, "Aloy from Horizon: Zero Dawn, half body portrait, smooth, detailed armor, beautiful face, illustration", 7.0, 30],
+        [models[7].name, "fantasy portrait painting, digital art", 4.0, 20],
     ], inputs=[model_name, prompt, guidance, steps], outputs=outputs, fn=inference, cache_examples=False)
+    
+    gr.HTML("""
+     If you have better example prompts, send them to Pawele and he will put it here (too lazy to come up with some good ones myself, sorry). 
+    """)
 
     exNegative = gr.Examples([
         ["ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, bad anatomy, watermark, signature, cut off, low contrast, underexposed, overexposed, bad art, beginner, amateur, distorted face"],
+        ["grotesque, unsightly, misshapen, deformed, mangled, awkward, distorted, twisted, contorted, lopsided, malformed, asymmetrical, irregular, unnatural, botched, mutilated,disfigured, ugly, offensive, repulsive, revolting, ghastly, hideous, unappealing, terrible, awful, frightful, odious, loathsome, obnoxious, detestable, hateful, repugnant, sickening, vile, abhorrent, contemptible, execrable, repellent, disgusting, distasteful, abominable, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, outof frame, extra limbs, body out of frame, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, draft, amateur, multiple, gross, weird, uneven, furnishing, decorating, decoration, furniture, text, poor, low, basic, worst, juvenile, unprofessional, failure, crayon, Oil, nude, sex, label, thousand hands"],
     ], inputs=[neg_prompt], outputs=outputs, fn=inference, cache_examples=False)
 
     gr.HTML("""
