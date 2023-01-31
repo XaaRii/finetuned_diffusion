@@ -259,7 +259,7 @@ with gr.Blocks(css="style.css") as demo:
               </div>
               <p>
                Demo for multiple fine-tuned Stable Diffusion models, trained on different styles, some better, some worse.
-               You can also load custom models hosted on https://huggingface.co/
+               You can also load custom models hosted on <a href="https://huggingface.co/">https://huggingface.co/</a> 
                {("</br>You can play around as much as you want, although keep in mind this is hosted on free resources on google colab and those may vary greatly in the future." if is_colab else "")}
               </p>
               <p>Don't know what to type in as prompts? You can get inspired on various sites (<a href="https://prompthero.com/openjourney-prompts">prompthero</a>, <a href="https://lexica.art/">Lexica.art</a>) or you can try tools for prompt generating (such as <a href="https://huggingface.co/spaces/Gustavosta/MagicPrompt-Stable-Diffusion">MagicPrompt</a>)</br>Also, by writing prompt in brackets "()", they will be more important (this also works for negative prompts!)</p>
